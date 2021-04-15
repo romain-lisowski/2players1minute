@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tests",
+  "info": {
+    "name": "Test",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "tests"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "rating": {
+      "type": "decimal",
+      "min": 0,
+      "max": 10
+    },
+    "topic": {
+      "via": "tests",
+      "model": "topic"
+    }
+  }
+}

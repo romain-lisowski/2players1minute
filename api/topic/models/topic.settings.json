@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "topics",
+  "info": {
+    "name": "Topic",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "tests": {
+      "collection": "test",
+      "via": "topic"
+    },
+    "categories": {
+      "via": "topics",
+      "collection": "category",
+      "dominant": true
+    },
+    "subcategories": {
+      "collection": "subcategory",
+      "via": "topics",
+      "dominant": true
+    },
+    "cover": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}
