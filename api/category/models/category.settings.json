@@ -19,6 +19,12 @@
     "topics": {
       "collection": "topic",
       "via": "categories"
+    },
+    "iconName": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
     }
   }
 }

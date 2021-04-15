@@ -1,5 +1,11 @@
 <script>
 	import { onMount } from 'svelte'
+  import Fa from 'svelte-fa/src/fa.svelte'
+  import { faNewspaper } from '@fortawesome/free-solid-svg-icons'
+  import { faGamepad } from '@fortawesome/free-solid-svg-icons'
+  import { faFilm } from '@fortawesome/free-solid-svg-icons'
+  import { faHamburger } from '@fortawesome/free-solid-svg-icons'
+  import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
 
 	let topics = []
   let categories = []
@@ -42,6 +48,8 @@
       }).then(checkStatus)
         .then(parseJSON);
       categories = res
+      categories.sort((a, b) => (a.order > b.order) ? 1 : -1)
+
     } catch (e) {
       error = e	
     }
@@ -58,7 +66,7 @@
         <nav class="px-10 py-6 shadow">
 
             <div class="flex items-center justify-center">
-                <img class="inline-block h-14 -mt-2 mr-2" src="/assets/images/joypads.svg" alt="logo-joypads">
+                <img class="inline-block h-14 -mt-2 mr-2" src="/assets/images/gamepads.svg" alt="icon-gamepads">
                 <span class="inline-block text-4xl text-gray-100 font-extrabold tracking-tighter">{siteName}</span>
             </div>
 
@@ -75,7 +83,25 @@
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
                 <div class="flex flex-col mt-2 -mx-2 md:mt-4 md:flex-row md:block">
                   {#each categories as category}
-                    <span class="px-6 py-2 text-sm hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 md:mx-2 rounded-sm cursor-pointer">{category.name}</span>
+                    {#if category.iconName === 'faNewspaper' }
+                      <span class="md:mx-2 px-4 py-2 text-sm hover:font-bold text-gray-900 bg-gray-100 rounded-sm hover:shadow-lg">
+                        <Fa icon={faNewspaper} size="md" class="inline" />
+                        {category.name}
+                      </span>
+                      {:else }
+                        <span class="md:mx-2 px-4 py-2 text-sm hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg cursor-pointer">
+                          {#if category.iconName === 'faGamepad' }
+                            <Fa icon={faGamepad} size="md" class="inline" />
+                          {:else if category.iconName === 'faFilm' }
+                            <Fa icon={faFilm} size="md" class="inline" />
+                          {:else if category.iconName === 'faHamburger' }
+                            <Fa icon={faHamburger} size="md" class="inline" />
+                          {:else if category.iconName === 'faHeadphones' }
+                            <Fa icon={faHeadphones} size="md" class="inline" />
+                          {/if}
+                          {category.name}
+                        </span>
+                      {/if}
                   {/each}
                 </div>
             </div>
@@ -139,7 +165,7 @@
       {/if}
     </div>
 
-    <footer class="h-full p-4 text-xs text-center text-gray-100 bg-gray-800 border-t-4 border-gray-800 shadow-xl">
+    <footer class="h-full p-4 text-xs text-center text-gray-900 bg-gray-800 border-t-4 border-gray-800 shadow-xl">
       Copyright - {siteName} - 2021
     </footer>
 
