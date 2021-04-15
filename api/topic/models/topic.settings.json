@@ -17,8 +17,8 @@
       "unique": true
     },
     "tests": {
-      "collection": "test",
-      "via": "topic"
+      "via": "topic",
+      "collection": "test"
     },
     "categories": {
       "via": "topics",

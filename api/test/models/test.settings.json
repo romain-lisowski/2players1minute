@@ -12,9 +12,9 @@
   },
   "attributes": {
     "user": {
-      "via": "tests",
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "tests"
     },
     "content": {
       "type": "richtext"
@@ -25,8 +25,11 @@
       "max": 10
     },
     "topic": {
-      "via": "tests",
-      "model": "topic"
+      "model": "topic",
+      "via": "tests"
+    },
+    "title": {
+      "type": "string"
     }
   }
 }

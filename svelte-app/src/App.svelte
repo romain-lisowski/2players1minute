@@ -152,7 +152,7 @@
                             <span class="font-bold text-xl">{test.rating}</span><span class="text-xs">/10</span>
                         </div>
                       </div>
-
+                      <p class="mt-2 text-lg text-gray-800 font-bold">{test.title}</p>
                       <p class="mt-2 text-gray-800 text-justify">{test.content}</p>
                       
                     </div>
