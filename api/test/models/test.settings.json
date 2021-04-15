@@ -12,9 +12,9 @@
   },
   "attributes": {
     "user": {
+      "via": "tests",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "tests"
+      "model": "user"
     },
     "content": {
       "type": "richtext"

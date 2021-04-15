@@ -60,8 +60,19 @@
       "configurable": false
     },
     "tests": {
-      "via": "user",
-      "collection": "test"
+      "collection": "test",
+      "via": "user"
+    },
+    "imageProfile": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     }
   }
 }
