@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte'
   import Fa from 'svelte-fa/src/fa.svelte'
-  import { faNewspaper } from '@fortawesome/free-solid-svg-icons'
+  import { faHome } from '@fortawesome/free-solid-svg-icons'
   import { faGamepad } from '@fortawesome/free-solid-svg-icons'
   import { faFilm } from '@fortawesome/free-solid-svg-icons'
   import { faHamburger } from '@fortawesome/free-solid-svg-icons'
@@ -67,8 +67,11 @@
         <nav class="px-10 py-6 shadow">
 
             <div class="flex items-center justify-center">
-                <img class="inline-block h-14 -mt-2 mr-2" src="/assets/images/gamepads.svg" alt="icon-gamepads">
-                <span class="inline-block text-4xl text-gray-100 font-extrabold tracking-tighter">{siteName}</span>
+              <img class="inline-block h-20  mr-2" src="/assets/images/gamepads.svg" alt="icon-gamepads">
+              <span>
+                <span class="inline-block text-6xl text-gray-100 font-extrabold tracking-tighter">{siteName}</span>
+                <span class="block text-center text-xl text-gray-100 tracking-wide">{baseline}</span>
+              </span>
             </div>
 
             <div class="items-center justify-center md:flex">
@@ -82,27 +85,32 @@
                 </div>
             
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-                <div class="flex flex-col mt-2 -mx-2 md:mt-4 md:flex-row md:block">
+                <div class="flex flex-col mt-2 -mx-2 md:mt-8 md:flex-row md:block">
                   {#each categories as category}
-                    {#if category.iconName === 'faNewspaper' }
-                      <span class="md:mx-2 px-4 py-2 hover:font-bold text-gray-900 bg-gray-100 rounded-sm hover:shadow-lg">
-                        <Fa icon={faNewspaper} size="md" class="inline" />
+                    {#if category.iconName === 'faHome' }
+                      <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-900 bg-gray-100 rounded-sm hover:shadow-lg">
+                        <Fa icon={faHome} size="lg" class="inline mr-1" />
                         {category.name}
                       </span>
-                      {:else }
-                        <span class="md:mx-2 px-4 py-2 hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg cursor-pointer">
-                          {#if category.iconName === 'faGamepad' }
-                            <Fa icon={faGamepad} size="md" class="inline" />
-                          {:else if category.iconName === 'faFilm' }
-                            <Fa icon={faFilm} size="md" class="inline" />
-                          {:else if category.iconName === 'faHamburger' }
-                            <Fa icon={faHamburger} size="md" class="inline" />
-                          {:else if category.iconName === 'faHeadphones' }
-                            <Fa icon={faHeadphones} size="md" class="inline" />
-                          {/if}
-                          {category.name}
-                        </span>
-                      {/if}
+                    {:else if category.iconName == 'faHamburger' || category.iconName == 'faHeadphones' }
+                      <span class="md:mx-2 px-4 py-3 text-gray-500 rounded-sm hover:shadow-lg">
+                        {#if category.iconName === 'faHamburger' }
+                          <Fa icon={faHamburger} size="lg" class="inline mr-1" />
+                        {:else if category.iconName === 'faHeadphones' }
+                          <Fa icon={faHeadphones} size="lg" class="inline mr-1" />
+                        {/if}
+                        {category.name}
+                      </span>
+                    {:else }
+                      <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg cursor-pointer">
+                        {#if category.iconName === 'faGamepad' }
+                          <Fa icon={faGamepad} size="lg" class="inline mr-1" />
+                        {:else if category.iconName === 'faFilm' }
+                          <Fa icon={faFilm} size="lg" class="inline mr-1" />
+                        {/if}
+                        {category.name}
+                      </span>
+                    {/if}
                   {/each}
                 </div>
             </div>
@@ -124,10 +132,13 @@
                 <div class="flex items-center justify-between mt-3">
                   <ul class="flex gap-2">
                     {#each topic.categories as category}
-                      <li class="px-6 py-1 text-sm font-extrabold bg-gray-100 text-gray-800 border-2 border-gray-100 shadow-md uppercase rounded-sm">{category.name}</li>
+                    <li class="px-6 py-2 text-sm font-extrabold bg-gray-100 text-gray-800 border-2 border-gray-100 shadow-md uppercase rounded-sm">
+                        <Fa icon={faGamepad} size="lg" class="inline mr-1" />
+                        {category.name}
+                      </li>
                     {/each}
                     {#each topic.subcategories as subcategory}
-                      <li class="px-6 py-1 text-sm text-gray-100 border-2 border-gray-100 shadow-md uppercase rounded-sm">{subcategory.name}</li>
+                      <li class="px-6 py-2 text-sm text-gray-100 border-2 border-gray-100 shadow-md uppercase rounded-sm">{subcategory.name}</li>
                     {/each}
                   </ul>
 
