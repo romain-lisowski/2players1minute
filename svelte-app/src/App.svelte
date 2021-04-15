@@ -2,35 +2,51 @@
 	import { onMount } from 'svelte'
 
 	let topics = []
+  let categories = []
 	let error = null
 
 	onMount(async () => {
 		const parseJSON = (resp) => (resp.json ? resp.json() : resp);
 		const checkStatus = (resp) => {
-		if (resp.status >= 200 && resp.status < 300) {
-		return resp;
-		}
-		return parseJSON(resp).then((resp) => {
-		throw resp;
-		});
-	};
-	const headers = {
-		'Content-Type': 'application/json',
-	};
+      if (resp.status >= 200 && resp.status < 300) {
+      return resp;
+      }
+      return parseJSON(resp).then((resp) => {
+      throw resp;
+      });
+    };
 
-	try {
-		const res = await fetch("http://localhost:1337/topics", {
-		  method: "GET",
-		  headers: {
-		     'Content-Type': 'application/json'
-		  },
-		}).then(checkStatus)
-      .then(parseJSON);
-		topics = res
-	} catch (e) {
-		error = e	
-	}
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+    try {
+      const res = await fetch("http://localhost:1337/topics", {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }).then(checkStatus)
+        .then(parseJSON);
+      topics = res
+    } catch (e) {
+      error = e	
+    }
+
+    try {
+      const res = await fetch("http://localhost:1337/categories", {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }).then(checkStatus)
+        .then(parseJSON);
+      categories = res
+    } catch (e) {
+      error = e	
+    }
 	});
+
 
 	export let siteName
 	
@@ -58,10 +74,9 @@
             
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
                 <div class="flex flex-col mt-2 -mx-2 md:mt-4 md:flex-row md:block">
-                    <span class="px-6 py-2 text-sm hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 md:mx-2 rounded-sm cursor-pointer">Gaming</span>
-                    <span class="px-6 py-2 text-sm hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 md:mx-2 rounded-sm cursor-pointer">Cinéma</span>
-                    <span class="px-6 py-2 text-sm hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 md:mx-2 rounded-sm cursor-pointer">A propos</span>
-                    <span class="px-6 py-2 text-sm hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 md:mx-2 rounded-sm cursor-pointer">Contact</span>
+                  {#each categories as category}
+                    <span class="px-6 py-2 text-sm hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 md:mx-2 rounded-sm cursor-pointer">{category.name}</span>
+                  {/each}
                 </div>
             </div>
         </nav>
