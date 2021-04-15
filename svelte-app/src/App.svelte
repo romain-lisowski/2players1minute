@@ -57,6 +57,7 @@
 
 
 	export let siteName
+  export let baseline
 	
 </script>
 
