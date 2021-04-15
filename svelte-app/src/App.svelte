@@ -84,12 +84,12 @@
                 <div class="flex flex-col mt-2 -mx-2 md:mt-4 md:flex-row md:block">
                   {#each categories as category}
                     {#if category.iconName === 'faNewspaper' }
-                      <span class="md:mx-2 px-4 py-2 text-sm hover:font-bold text-gray-900 bg-gray-100 rounded-sm hover:shadow-lg">
+                      <span class="md:mx-2 px-4 py-2 hover:font-bold text-gray-900 bg-gray-100 rounded-sm hover:shadow-lg">
                         <Fa icon={faNewspaper} size="md" class="inline" />
                         {category.name}
                       </span>
                       {:else }
-                        <span class="md:mx-2 px-4 py-2 text-sm hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg cursor-pointer">
+                        <span class="md:mx-2 px-4 py-2 hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg cursor-pointer">
                           {#if category.iconName === 'faGamepad' }
                             <Fa icon={faGamepad} size="md" class="inline" />
                           {:else if category.iconName === 'faFilm' }
@@ -110,7 +110,7 @@
 
     <div class="h-full py-16 bg-gray-200">
       {#if error !== null}
-        <span class="text-gray-100">{error}</span>
+        <span class="text-gray-900">{error}</span>
       {:else}
         <ul>
           {#each topics as topic}
@@ -120,13 +120,13 @@
               <div class="w-full h-full p-6 bg-gray-800 border-b-4 border-gray-900">
                 <p class="text-left text-5xl font-extrabold text-gray-100 cursor-pointer">{topic.name}</p>
 
-                <div class="flex items-center justify-between my-3">
+                <div class="flex items-center justify-between mt-3">
                   <ul class="flex gap-2">
                     {#each topic.categories as category}
-                      <li class="px-6 py-1 text-xs font-extrabold bg-gray-100 text-gray-800 border-2 border-gray-100 shadow-md uppercase rounded-sm">{category.name}</li>
+                      <li class="px-6 py-1 text-sm font-extrabold bg-gray-100 text-gray-800 border-2 border-gray-100 shadow-md uppercase rounded-sm">{category.name}</li>
                     {/each}
                     {#each topic.subcategories as subcategory}
-                      <li class="px-6 py-1 text-xs text-gray-100 border-2 border-gray-100 shadow-md uppercase rounded-sm">{subcategory.name}</li>
+                      <li class="px-6 py-1 text-sm text-gray-100 border-2 border-gray-100 shadow-md uppercase rounded-sm">{subcategory.name}</li>
                     {/each}
                   </ul>
 
@@ -165,15 +165,9 @@
       {/if}
     </div>
 
-    <footer class="h-full p-4 text-xs text-center text-gray-900 bg-gray-800 border-t-4 border-gray-800 shadow-xl">
+    <footer class="h-full p-4 text-xs text-center text-gray-100 bg-gray-800 border-t-4 border-gray-800 shadow-xl">
       Copyright - {siteName} - 2021
     </footer>
 
 
 </main>
-
-<style global>
-	@tailwind base;
-	@tailwind components;
-	@tailwind utilities;
-</style>
