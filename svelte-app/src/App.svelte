@@ -6,6 +6,7 @@
   import { faFilm } from '@fortawesome/free-solid-svg-icons'
   import { faHamburger } from '@fortawesome/free-solid-svg-icons'
   import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
+  import { faBook } from '@fortawesome/free-solid-svg-icons'
 
 	let topics = []
   let categories = []
@@ -92,12 +93,14 @@
                         <Fa icon={faHome} size="lg" class="inline mr-1" />
                         {category.name}
                       </span>
-                    {:else if category.iconName == 'faHamburger' || category.iconName == 'faHeadphones' }
+                    {:else if ['faHamburger', 'faHeadphones', 'faBook'].includes(category.iconName)}
                       <span class="md:mx-2 px-4 py-3 text-gray-500 rounded-sm hover:shadow-lg">
                         {#if category.iconName === 'faHamburger' }
                           <Fa icon={faHamburger} size="lg" class="inline mr-1" />
                         {:else if category.iconName === 'faHeadphones' }
                           <Fa icon={faHeadphones} size="lg" class="inline mr-1" />
+                        {:else if category.iconName === 'faBook' }
+                          <Fa icon={faBook} size="lg" class="inline mr-1" />
                         {/if}
                         {category.name}
                       </span>
