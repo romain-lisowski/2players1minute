@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte'
-  import marked from 'marked';
+  import marked from 'marked'
+  import dayjs from 'dayjs'
   import Fa from 'svelte-fa/src/fa.svelte'
   import { faHome } from '@fortawesome/free-solid-svg-icons'
   import { faGamepad } from '@fortawesome/free-solid-svg-icons'
@@ -37,6 +38,9 @@
       }).then(checkStatus)
         .then(parseJSON);
       topics = res
+      topics.forEach((topic, index) => {
+        topic.published_at = dayjs(topic.published_at).format('DD/MM/YYYY à HH[h]mm')
+      })
     } catch (e) {
       error = e	
     }
@@ -161,7 +165,7 @@
             <div class="p-6 bg-gray-800 border-b-4 border-gray-900">
               <p class="text-left text-5xl font-extrabold text-gray-100 cursor-pointer">{topic.name}</p>
 
-              <div class="flex items-center justify-between mt-3">
+              <div class="flex items-end justify-between mt-3">
                 <ul class="flex gap-2">
                   <li class="px-6 py-2 text-sm font-extrabold bg-gray-100 text-gray-800 border-2 border-gray-100 shadow-md uppercase rounded-sm">
                     <Fa icon={faGamepad} size="lg" class="inline mr-1" />
@@ -172,7 +176,7 @@
                   {/each}
                 </ul>
 
-                <p class="text-gray-100">{topic.published_at}</p>
+                <p class="text-gray-100">Publié le : {topic.published_at}</p>
               </div>
             </div>
 
