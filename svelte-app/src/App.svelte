@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte'
+  import marked from 'marked';
   import Fa from 'svelte-fa/src/fa.svelte'
   import { faHome } from '@fortawesome/free-solid-svg-icons'
   import { faGamepad } from '@fortawesome/free-solid-svg-icons'
@@ -167,7 +168,7 @@
                         </div>
                       </div>
                       <p class="mt-2 text-lg text-gray-800 font-bold">{test.title}</p>
-                      <p class="mt-2 text-gray-800 text-justify">{test.content}</p>
+                      <p class="mt-2 text-gray-800 text-justify">{@html marked(test.content)}</p>
                       
                     </div>
                     
