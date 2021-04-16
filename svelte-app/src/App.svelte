@@ -69,7 +69,7 @@
 
 
 <main>	
-    <header class="h-full bg-gray-800 border-b-4 border-gray-900 shadow-xl">
+    <header class="h-full bg-gray-800 border-b-4 border-gray-500 shadow-xl">
         <nav class="px-10 py-6 shadow">
 
             <div class="flex items-center justify-center">
@@ -162,7 +162,7 @@
           <li class="max-w-5xl mb-16 overflow-hidden bg-white rounded-lg shadow-xl">
             <img class="object-cover object-top w-full h-96 shadow-lg" src="http://localhost:1337{topic.cover.url}" alt="Article">
               
-            <div class="p-6 bg-gray-800 border-b-4 border-gray-900">
+            <div class="p-6 bg-gray-800 border-b-4 border-gray-500">
               <p class="text-left text-5xl font-extrabold text-gray-100 cursor-pointer">{topic.name}</p>
 
               <div class="flex items-end justify-between mt-3">
@@ -184,7 +184,7 @@
               <div class="flex gap-6 items-start justify-between">
                 {#each topic.tests as test}
                   <div class="w-3/4">  
-                    <div class="flex items-center mb-3 pb-3 border-b-2 border-gray-900">
+                    <div class="flex items-center mb-3 pb-3 border-b-2 border-gray-800">
                       <div class="flex items-center justify-between w-full">
                         <div class="flex items-center">
                           <img class="object-cover h-12 rounded-full" src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60" alt="Avatar">
@@ -195,7 +195,7 @@
                         </span>
                       </div>
                     </div>
-                    <p class="mt-2 text-lg text-gray-800 font-bold">{test.title}</p>
+                    <p class="mt-2 text-xl text-gray-800 font-bold">{test.title}</p>
                     <p class="mt-2 text-gray-800 text-justify">{@html marked(test.content)}</p>
                   </div>
                 {/each}
