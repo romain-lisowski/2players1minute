@@ -17,13 +17,12 @@
       "unique": true
     },
     "tests": {
-      "via": "topic",
-      "collection": "test"
+      "collection": "test",
+      "via": "topic"
     },
-    "categories": {
-      "via": "topics",
-      "collection": "category",
-      "dominant": true
+    "category": {
+      "model": "category",
+      "via": "topics"
     },
     "subcategories": {
       "collection": "subcategory",

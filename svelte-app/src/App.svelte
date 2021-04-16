@@ -90,7 +90,7 @@
                 <div class="flex flex-col mt-2 -mx-2 md:mt-8 md:flex-row md:block">
                   {#each categories as category}
                     {#if category.iconName === 'faHome' }
-                      <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-900 bg-gray-100 rounded-sm hover:shadow-lg">
+                      <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-800 bg-gray-100 rounded-sm hover:shadow-lg">
                         <Fa icon={faHome} size="lg" class="inline mr-1" />
                         {category.name}
                       </span>
@@ -106,7 +106,7 @@
                         {category.name}
                       </span>
                     {:else }
-                      <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg cursor-pointer">
+                      <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg transform duration-500 cursor-pointer">
                         {#if category.iconName === 'faGamepad' }
                           <Fa icon={faGamepad} size="lg" class="inline mr-1" />
                         {:else if category.iconName === 'faFilm' }
@@ -121,64 +121,86 @@
         </nav>
     </header>
 
-    <div class="h-full py-16 bg-gray-200">
-      {#if error !== null}
-        <span class="text-gray-900">{error}</span>
-      {:else}
-        <ul>
-          {#each topics as topic}
-            <li class="max-w-5xl mx-auto mb-16 overflow-hidden bg-white rounded-lg shadow-xl">
-              <img class="object-cover object-top w-full h-96 shadow-lg" src="http://localhost:1337{topic.cover.url}" alt="Article">
-                
-              <div class="w-full h-full p-6 bg-gray-800 border-b-4 border-gray-900">
-                <p class="text-left text-5xl font-extrabold text-gray-100 cursor-pointer">{topic.name}</p>
+    <div class="h-full p-16">
+      <ul class="flex flex-wrap gap-6 mb-16">
 
-                <div class="flex items-center justify-between mt-3">
-                  <ul class="flex gap-2">
-                    {#each topic.categories as category}
-                    <li class="px-6 py-2 text-sm font-extrabold bg-gray-100 text-gray-800 border-2 border-gray-100 shadow-md uppercase rounded-sm">
-                        <Fa icon={faGamepad} size="lg" class="inline mr-1" />
-                        {category.name}
-                      </li>
-                    {/each}
-                    {#each topic.subcategories as subcategory}
-                      <li class="px-6 py-2 text-sm text-gray-100 border-2 border-gray-100 shadow-md uppercase rounded-sm">{subcategory.name}</li>
-                    {/each}
-                  </ul>
+        {#each topics as topic}
+          <li class="w-1/3 overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:scale-110 transform duration-300 cursor-pointer">
+            <img class="w-full h-64 object-cover object-top" src="http://localhost:1337{topic.cover.url}" alt="Article">
+              
+            <div class="mt-4">
 
-                  <p class="text-gray-100">{topic.published_at}</p>
-                </div>
-              </div>
-
-              <div class="p-6">
-                <div class="flex gap-6 items-start justify-between">
+              <div class="flex items-center justify-end -mt-16 mb-5 px-2">
+                <span>
                   {#each topic.tests as test}
-                    <div class="w-3/4">
-                      
-                      <div class="flex items-center mb-3 pb-3 border-b-2 border-gray-900">
-                        <div class="flex items-center justify-between w-full">
-                          <div class="flex items-center">
-                            <div class="flex items-center">
-                              <img class="object-cover h-12 rounded-full" src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60" alt="Avatar">
-                              <span class="mx-2 text-lg font-semibold text-gray-900">Rom</span>
-                            </div>
-                          </div>
-                          <span class="text-right text-xl px-6 py-3 text-gray-100 bg-gray-800 rounded-sm shadow-md">
-                            <span class="font-bold text-xl">{test.rating}</span><span class="text-xs">/10</span>
-                        </div>
-                      </div>
-                      <p class="mt-2 text-lg text-gray-800 font-bold">{test.title}</p>
-                      <p class="mt-2 text-gray-800 text-justify">{@html marked(test.content)}</p>
-                      
-                    </div>
-                    
+                  <span class="mr-2 px-3 py-2 text-xl text-right bg-white text-gray-800 rounded-sm shadow-lg">
+                    <span class="font-bold text-xl">{test.rating}</span><span class="text-xs">/10</span>
+                  </span>
                   {/each}
-                </div>
+                </span>
               </div>
-            </li>
-          {/each}
-        </ul>
-      {/if}
+              
+              <div class="flex items-center justify-left gap-3 bg-gray-800">
+                <span class="ml-6 text-xl font-extrabold text-gray-100 uppercase rounded-sm shadow-lg">
+                  <Fa icon={faGamepad} size="lg" />
+                </span>
+                <p class="py-4 text-center text-xl font-extrabold text-gray-100 cursor-pointer">{topic.name}</p>
+              </div>
+              
+            </div>
+
+          </li>
+        {/each}
+      </ul>
+
+      <ul>
+        {#each topics as topic}
+          <li class="max-w-5xl mb-16 overflow-hidden bg-white rounded-lg shadow-xl">
+            <img class="object-cover object-top w-full h-96 shadow-lg" src="http://localhost:1337{topic.cover.url}" alt="Article">
+              
+            <div class="p-6 bg-gray-800 border-b-4 border-gray-900">
+              <p class="text-left text-5xl font-extrabold text-gray-100 cursor-pointer">{topic.name}</p>
+
+              <div class="flex items-center justify-between mt-3">
+                <ul class="flex gap-2">
+                  <li class="px-6 py-2 text-sm font-extrabold bg-gray-100 text-gray-800 border-2 border-gray-100 shadow-md uppercase rounded-sm">
+                    <Fa icon={faGamepad} size="lg" class="inline mr-1" />
+                    {topic.category.name}
+                  </li>
+                  {#each topic.subcategories as subcategory}
+                    <li class="px-6 py-2 text-sm text-gray-100 border-2 border-gray-100 shadow-md uppercase rounded-sm">{subcategory.name}</li>
+                  {/each}
+                </ul>
+
+                <p class="text-gray-100">{topic.published_at}</p>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex gap-6 items-start justify-between">
+                {#each topic.tests as test}
+                  <div class="w-3/4">  
+                    <div class="flex items-center mb-3 pb-3 border-b-2 border-gray-900">
+                      <div class="flex items-center justify-between w-full">
+                        <div class="flex items-center">
+                          <img class="object-cover h-12 rounded-full" src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60" alt="Avatar">
+                          <span class="mx-2 text-lg font-semibold text-gray-800">Rom</span>
+                        </div>
+                        <span class="text-right text-xl px-6 py-3 text-gray-100 bg-gray-800 rounded-sm shadow-md">
+                          <span class="font-bold text-2xl">{test.rating}</span><span class="text-sm">/10</span>
+                        </span>
+                      </div>
+                    </div>
+                    <p class="mt-2 text-lg text-gray-800 font-bold">{test.title}</p>
+                    <p class="mt-2 text-gray-800 text-justify">{@html marked(test.content)}</p>
+                  </div>
+                {/each}
+              </div>
+            </div>
+
+          </li>
+        {/each}
+      </ul>
     </div>
 
     <footer class="h-full p-4 text-xs text-center text-gray-100 bg-gray-800 border-t-4 border-gray-800 shadow-xl">

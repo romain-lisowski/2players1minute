@@ -16,15 +16,15 @@
       "required": true,
       "unique": true
     },
-    "topics": {
-      "collection": "topic",
-      "via": "categories"
-    },
     "iconName": {
       "type": "string"
     },
     "order": {
       "type": "integer"
+    },
+    "topics": {
+      "via": "category",
+      "collection": "topic"
     }
   }
 }
