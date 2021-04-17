@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "categories",
+  "collectionName": "game_plateforms",
   "info": {
-    "name": "category",
+    "name": "gamePlatform",
     "description": ""
   },
   "options": {
@@ -12,19 +12,15 @@
   },
   "attributes": {
     "name": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
-    "icon_name": {
       "type": "string"
     },
-    "order": {
-      "type": "integer"
+    "classes": {
+      "type": "string"
     },
     "topics": {
       "collection": "topic",
-      "via": "category"
+      "via": "game_platforms",
+      "dominant": true
     }
   }
 }

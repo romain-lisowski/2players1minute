@@ -93,27 +93,27 @@
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
                 <div class="flex flex-col mt-2 -mx-2 md:mt-8 md:flex-row md:block">
                   {#each categories as category}
-                    {#if category.iconName === 'faHome' }
+                    {#if category.icon_name === 'faHome' }
                       <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-800 bg-gray-100 rounded-sm hover:shadow-lg">
                         <Fa icon={faHome} size="lg" class="inline mr-1" />
                         {category.name}
                       </span>
-                    {:else if ['faHamburger', 'faHeadphones', 'faBook'].includes(category.iconName)}
+                    {:else if ['faHamburger', 'faHeadphones', 'faBook'].includes(category.icon_name)}
                       <span class="md:mx-2 px-4 py-3 text-gray-500 rounded-sm hover:shadow-lg">
-                        {#if category.iconName === 'faHamburger' }
+                        {#if category.icon_name === 'faHamburger' }
                           <Fa icon={faHamburger} size="lg" class="inline mr-1" />
-                        {:else if category.iconName === 'faHeadphones' }
+                        {:else if category.icon_name === 'faHeadphones' }
                           <Fa icon={faHeadphones} size="lg" class="inline mr-1" />
-                        {:else if category.iconName === 'faBook' }
+                        {:else if category.icon_name === 'faBook' }
                           <Fa icon={faBook} size="lg" class="inline mr-1" />
                         {/if}
                         {category.name}
                       </span>
                     {:else }
                       <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg transform duration-500 cursor-pointer">
-                        {#if category.iconName === 'faGamepad' }
+                        {#if category.icon_name === 'faGamepad' }
                           <Fa icon={faGamepad} size="lg" class="inline mr-1" />
-                        {:else if category.iconName === 'faFilm' }
+                        {:else if category.icon_name === 'faFilm' }
                           <Fa icon={faFilm} size="lg" class="inline mr-1" />
                         {/if}
                         {category.name}
@@ -132,19 +132,26 @@
           <li class="w-1/4 overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:scale-110 transform duration-300 cursor-pointer">
             <img class="w-full h-64 object-cover object-top" src="http://localhost:1337{topic.cover.url}" alt="Article">
               
-            <div class="mt-4">
+            <div>
 
-              <div class="flex items-center justify-end -mt-16 mb-5 px-2">
-                <span>
-                  {#each topic.tests as test}
-                  <span class="mr-2 px-3 py-2 text-xl text-right bg-white text-gray-800 rounded-sm shadow-lg">
-                    <span class="font-bold text-xl">{test.rating}</span><span class="text-xs">/10</span>
-                  </span>
+              <div class="flex items-baseline justify-between -mt-12">
+                <ul class="flex justify-end gap-1 pl-2">
+                  {#each topic.game_platforms as gamePlaform}
+                    <li class="px-3 py-2 text-xs text-gray-100 align-middle rounded-sm shadow-lg {gamePlaform.classes}">{gamePlaform.name}</li>
                   {/each}
+                </ul>
+                <span class="flex justify-end pr-2">
+                  <span>
+                    {#each topic.tests as test}
+                    <span class="mr-2 px-3 py-2 text-xl text-right bg-white text-gray-800 rounded-sm shadow-lg">
+                      <span class="font-bold text-xl">{test.rating}</span><span class="text-xs">/10</span>
+                    </span>
+                    {/each}
+                  </span>
                 </span>
               </div>
               
-              <div class="flex items-center justify-left gap-3 bg-gray-800">
+              <div class="flex items-center justify-left gap-3 mt-3 bg-gray-800">
                 <span class="ml-6 text-xl font-extrabold text-gray-100 uppercase rounded-sm shadow-lg">
                   <Fa icon={faGamepad} size="lg" />
                 </span>
@@ -175,8 +182,16 @@
                     <li class="px-6 py-2 text-sm text-gray-100 border-2 border-gray-100 shadow-md uppercase rounded-sm">{subcategory.name}</li>
                   {/each}
                 </ul>
+                
+                <span>
+                  <ul class="flex justify-end gap-2 mb-2">
+                    {#each topic.game_platforms as gamePlaform}
+                      <li class="px-4 py-1 text-xs text-gray-100 align-middle rounded-sm {gamePlaform.classes}">{gamePlaform.name}</li>
+                    {/each}
+                  </ul>
+                  <p class="text-right text-gray-100">Publié le : {topic.published_at}</p>
+                </span>
 
-                <p class="text-gray-100">Publié le : {topic.published_at}</p>
               </div>
             </div>
 

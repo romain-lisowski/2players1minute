@@ -21,8 +21,8 @@
       "via": "topic"
     },
     "category": {
-      "model": "category",
-      "via": "topics"
+      "via": "topics",
+      "model": "category"
     },
     "subcategories": {
       "collection": "subcategory",
@@ -39,6 +39,10 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "game_platforms": {
+      "via": "topics",
+      "collection": "game-plateform"
     }
   }
 }

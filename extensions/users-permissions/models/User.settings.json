@@ -60,10 +60,10 @@
       "configurable": false
     },
     "tests": {
-      "via": "user",
-      "collection": "test"
+      "collection": "test",
+      "via": "user"
     },
-    "imageProfile": {
+    "image_profile": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
