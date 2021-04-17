@@ -166,7 +166,7 @@
 
       <ul>
         {#each topics as topic}
-          <li class="max-w-5xl mb-16 overflow-hidden bg-white rounded-lg shadow-xl">
+          <li class="max-w-5xl mx-auto mb-16 overflow-hidden bg-white rounded-lg shadow-xl">
             <img class="object-cover object-top w-full h-96 shadow-lg" src="http://localhost:1337{topic.cover.url}" alt="Article">
               
             <div class="p-6 bg-gray-800 border-b-4 border-gray-500">
