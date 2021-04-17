@@ -129,7 +129,7 @@
       <ul class="flex flex-wrap gap-6 mb-16">
 
         {#each topics as topic}
-          <li class="w-1/3 overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:scale-110 transform duration-300 cursor-pointer">
+          <li class="w-1/4 overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:scale-110 transform duration-300 cursor-pointer">
             <img class="w-full h-64 object-cover object-top" src="http://localhost:1337{topic.cover.url}" alt="Article">
               
             <div class="mt-4">
