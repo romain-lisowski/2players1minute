@@ -135,7 +135,7 @@
             <div>
 
               <div class="flex items-baseline justify-between -mt-12">
-                <ul class="flex justify-end gap-1 pl-2">
+                <ul class="flex justify-end gap-2 pl-3">
                   {#each topic.game_platforms as gamePlaform}
                     <li class="px-3 py-2 text-xs text-gray-100 align-middle rounded-sm shadow-lg {gamePlaform.classes}">{gamePlaform.name}</li>
                   {/each}
