@@ -39,7 +39,7 @@
         .then(parseJSON);
       topics = res
       topics.forEach((topic, index) => {
-        topic.published_at = dayjs(topic.published_at).format('DD/MM/YYYY à HH[h]mm')
+        topic.published_at = dayjs(topic.published_at).format('DD/MM/YYYY')
       })
     } catch (e) {
       error = e	
@@ -184,12 +184,12 @@
                 </ul>
                 
                 <span>
-                  <ul class="flex justify-end gap-2 mb-2">
+                  <p class="text-right text-gray-100 mb-2">Publié le : {topic.published_at}</p>
+                  <ul class="flex justify-end gap-2 ">
                     {#each topic.game_platforms as gamePlaform}
                       <li class="px-4 py-1 text-xs text-gray-100 align-middle rounded-sm {gamePlaform.classes}">{gamePlaform.name}</li>
                     {/each}
                   </ul>
-                  <p class="text-right text-gray-100">Publié le : {topic.published_at}</p>
                 </span>
 
               </div>
