@@ -26,8 +26,8 @@
       <span>
         <p class="text-right text-gray-100 mb-2">Publié le : {topic.published_at}</p>
         <ul class="flex justify-end gap-2 ">
-          {#each topic.game_platforms as gamePlaform}
-            <li class="px-4 py-1 text-xs text-gray-100 align-middle rounded-sm {gamePlaform.classes}">{gamePlaform.name}</li>
+          {#each topic.platforms as platform}
+            <li class="px-4 py-1 text-xs text-gray-100 align-middle rounded-sm {platform.classes}">{platform.name}</li>
           {/each}
         </ul>
       </span>

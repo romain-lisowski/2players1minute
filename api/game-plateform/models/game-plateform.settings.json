@@ -2,7 +2,7 @@
   "kind": "collectionType",
   "collectionName": "game_plateforms",
   "info": {
-    "name": "gamePlatform",
+    "name": "Platform",
     "description": ""
   },
   "options": {
@@ -19,7 +19,7 @@
     },
     "topics": {
       "collection": "topic",
-      "via": "game_platforms",
+      "via": "platforms",
       "dominant": true
     }
   }

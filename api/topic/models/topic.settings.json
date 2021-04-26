@@ -40,7 +40,7 @@
       "plugin": "upload",
       "required": false
     },
-    "game_platforms": {
+    "platforms": {
       "via": "topics",
       "collection": "game-plateform"
     }
