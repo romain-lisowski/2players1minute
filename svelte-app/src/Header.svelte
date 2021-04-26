@@ -1,7 +1,8 @@
 <script>
   import { onMount } from 'svelte'
+  import { RouterLink } from 'svelte-easyroute'
   import Fa from 'svelte-fa/src/fa.svelte'
-  import { faHome, faGamepad, faFilm, faHamburger, faHeadphones, faBook, faTv } from '@fortawesome/free-solid-svg-icons'
+  import { faHome, faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
 
   let categories = []
 
@@ -14,10 +15,6 @@
       return parseJSON(resp).then((resp) => {
         throw resp;
       });
-    };
-
-    const headers = {
-      'Content-Type': 'application/json',
     };
 
     try {
@@ -67,32 +64,26 @@
             <div class="flex flex-col mt-2 -mx-2 md:mt-8 md:flex-row md:block">
               {#each categories as category}
                 {#if category.icon_name === 'faHome' }
-                  <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-800 bg-gray-100 rounded-sm hover:shadow-lg">
-                    <Fa icon={faHome} size="lg" class="inline mr-1" />
-                    {category.name}
-                  </span>
-                {:else if ['faHamburger', 'faHeadphones', 'faBook'].includes(category.icon_name)}
-                  <span class="md:mx-2 px-4 py-3 text-gray-500 rounded-sm hover:shadow-lg">
-                    {#if category.icon_name === 'faHamburger' }
-                      <Fa icon={faHamburger} size="lg" class="inline mr-1" />
-                    {:else if category.icon_name === 'faHeadphones' }
-                      <Fa icon={faHeadphones} size="lg" class="inline mr-1" />
-                    {:else if category.icon_name === 'faBook' }
-                      <Fa icon={faBook} size="lg" class="inline mr-1" />
-                    {/if}
-                    {category.name}
-                  </span>
+                  <RouterLink to={'/'}>
+                    <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-800 bg-gray-100 rounded-sm hover:shadow-lg">
+                      <Fa icon={faHome} size="lg" class="inline mr-1" />
+                      {category.name}
+                    </span>
+                  </RouterLink>
                 {:else }
-                  <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg transform duration-500 cursor-pointer">
-                    {#if category.icon_name === 'faGamepad' }
-                      <Fa icon={faGamepad} size="lg" class="inline mr-1" />
-                    {:else if category.icon_name === 'faFilm' }
-                      <Fa icon={faFilm} size="lg" class="inline mr-1" />
-                    {:else if category.icon_name === 'faTv' }
-                      <Fa icon={faTv} size="lg" class="inline mr-1" />
-                    {/if}
-                    {category.name}
-                  </span>
+                  <RouterLink to={'/' + category.name.toLowerCase()}>
+                    <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg transform duration-500 cursor-pointer">
+                      {#if category.icon_name === 'faGamepad' }
+                          <Fa icon={faGamepad} size="lg" class="inline mr-1" />
+                        
+                      {:else if category.icon_name === 'faFilm' }
+                          <Fa icon={faFilm} size="lg" class="inline mr-1" />
+                      {:else if category.icon_name === 'faTv' }
+                          <Fa icon={faTv} size="lg" class="inline mr-1" />
+                      {/if}
+                      {category.name}
+                    </span>
+                  </RouterLink>
                 {/if}
               {/each}
             </div>

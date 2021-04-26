@@ -4,7 +4,7 @@ const app = new App({
 	target: document.body,
 	props: {
 		siteName: 'SIDE BY SIDE',
-		baseLine: 'Deux opinions en une minute'
+		baseLine: 'Deux avis en une minute'
 	}
 });
 

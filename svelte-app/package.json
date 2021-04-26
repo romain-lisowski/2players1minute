@@ -30,6 +30,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "dayjs": "^1.10.4",
     "marked": "^2.0.3",
-    "sirv-cli": "^1.0.0"
+    "sirv-cli": "^1.0.0",
+    "svelte-easyroute": "^3.1.2"
   }
 }
