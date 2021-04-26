@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   import Fa from 'svelte-fa/src/fa.svelte'
-  import { faHome, faGamepad, faFilm, faHamburger, faHeadphones, faBook } from '@fortawesome/free-solid-svg-icons'
+  import { faHome, faGamepad, faFilm, faHamburger, faHeadphones, faBook, faTv } from '@fortawesome/free-solid-svg-icons'
 
   let categories = []
 
@@ -88,6 +88,8 @@
                       <Fa icon={faGamepad} size="lg" class="inline mr-1" />
                     {:else if category.icon_name === 'faFilm' }
                       <Fa icon={faFilm} size="lg" class="inline mr-1" />
+                    {:else if category.icon_name === 'faTv' }
+                      <Fa icon={faTv} size="lg" class="inline mr-1" />
                     {/if}
                     {category.name}
                   </span>
