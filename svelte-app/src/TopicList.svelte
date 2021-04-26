@@ -5,13 +5,12 @@
     export let topics
 </script>
 
-<ul class="flex flex-wrap justify-center gap-6 mb-16">
+<ul class="grid grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
     {#each topics as topic}
-      <li class="w-1/4 overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:scale-110 transform duration-300 cursor-pointer">
+      <li class="overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:scale-110 transform duration-300 cursor-pointer">
         <img class="w-full h-64 object-cover object-top" src="http://localhost:1337{topic.cover.url}" alt="Article">
           
         <div>
-
           <div class="flex items-baseline justify-between -mt-12">
             <ul class="flex justify-end gap-2 pl-3">
               {#each topic.platforms as platform}
