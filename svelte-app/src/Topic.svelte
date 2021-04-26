@@ -1,6 +1,6 @@
 <script>
     import Fa from 'svelte-fa/src/fa.svelte'
-    import { faGamepad } from '@fortawesome/free-solid-svg-icons'
+    import { faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
     import marked from 'marked'
 
     export let topic
@@ -15,7 +15,13 @@
     <div class="flex items-end justify-between mt-3">
       <ul class="flex gap-2">
         <li class="px-6 py-2 text-sm font-extrabold bg-gray-100 text-gray-800 border-2 border-gray-100 shadow-md uppercase rounded-sm">
-          <Fa icon={faGamepad} size="lg" class="inline mr-1" />
+          {#if topic.category.icon_name === 'faGamepad' }
+            <Fa icon={faGamepad} size="lg" class="inline mr-1" />
+          {:else if topic.category.icon_name === 'faFilm' }
+            <Fa icon={faFilm} size="lg" class="inline mr-1" />
+          {:else if topic.category.icon_name === 'faTv' }
+            <Fa icon={faTv} size="lg" class="inline mr-1" />
+          {/if}
           {topic.category.name}
         </li>
         {#each topic.subcategories as subcategory}
