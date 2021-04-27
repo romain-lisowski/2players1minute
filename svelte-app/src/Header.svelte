@@ -1,6 +1,5 @@
 <script>
-  import { onMount } from 'svelte'
-  import { Link } from 'svelte-navigator'
+  import { Link } from 'svelte-routing'
   import Fa from 'svelte-fa/src/fa.svelte'
   import { faHome, faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
 

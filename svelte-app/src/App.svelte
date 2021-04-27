@@ -1,30 +1,16 @@
 <script>
-  import { Router, Route } from 'svelte-navigator'
+  import { Router, Route } from 'svelte-routing'
   import Header from './Header.svelte'
   import Footer from './Footer.svelte'
   import TopicList from './TopicList.svelte'
   
 	export let siteName
   export let baseLine
-
-  const fetchCategories = (async () => {
-    let categories = []
-    const response = await fetch("http://localhost:1337/categories", {
-      method: "GET",
-      headers: {'Content-Type': 'application/json'}
-    }).then(
-      (resp) => (resp.json ? resp.json() : resp)
-    )
-
-    categories = response
-    categories.sort((a, b) => (a.order > b.order) ? 1 : -1)
-    return categories
-  })()
-
+  export let url = ""
   
 </script>
 
-<Router primary={false}>
+<Router url="{url}">
   <Header siteName="{siteName}" baseLine="{baseLine}"/>
   <main>	
     <div class="h-full p-16">
@@ -32,25 +18,17 @@
         <TopicList />
       </Route>
 
-
-      <!-- <Route path="/1/gaming">
-        <TopicList />
+      <Route path="/1/gaming">
+        <TopicList categoryId="1" />
       </Route>
 
-      <Route path="/2/cinéma">
-        <TopicList />
-      </Route> -->
-
-      <Route path="/:categoryId/:categoryName">
-        <TopicList />
+      <Route path="/2/cinema">
+        <TopicList categoryId="2" />
       </Route>
-            <!-- {#await fetchCategories then categories}
-        {#each categories as category}
-          <Route path="/ + {category.id} + '/' + {category.name}">
-            <TopicList />
-          </Route>
-        {/each}
-      {/await} -->
+
+      <Route path="/7/serie">
+        <TopicList categoryId="7" />
+      </Route>
     </div>
   </main>
   <Footer siteName="{siteName}" />

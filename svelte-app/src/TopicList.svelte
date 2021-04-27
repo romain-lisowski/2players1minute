@@ -1,12 +1,10 @@
 <script>
-  import { Link, useParams } from 'svelte-navigator'
+  import { Link } from 'svelte-routing'
   import dayjs from 'dayjs'
   import Fa from 'svelte-fa/src/fa.svelte'
   import { faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
 
-  const routeParams = useParams()
-  const categoryId = parseInt($routeParams.categoryId)
-  console.log($routeParams)
+  export let categoryId = null
   console.log(categoryId)
 
   const fetchTopics = (async () => {
@@ -18,9 +16,9 @@
       (resp) => (resp.json ? resp.json() : resp)
     )
 
-    if (categoryId) {
+    if (categoryId !== null) {
       response.forEach((r) => {
-        if (r.category.id === categoryId) {
+        if (r.category.id == categoryId) {
           topics.push(r)
         }
       })
@@ -37,7 +35,9 @@
 
 </script>
 
-{#await fetchTopics then topics}
+{#await fetchTopics}
+  <div class="h-screen"></div>
+{:then topics}
   <ul class="grid grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
     {#each topics as topic}
       <li class="overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:scale-110 transform duration-300 cursor-pointer">
