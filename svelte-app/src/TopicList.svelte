@@ -5,7 +5,6 @@
   import { faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
 
   export let categoryId = null
-  console.log(categoryId)
 
   const fetchTopics = (async () => {
     let topics = []

@@ -5,36 +5,25 @@
   import { faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
   import marked from 'marked'
 
-  const topicId = 1
-  export let topic
+  export let topicId
 
-  onMount(async () => {
-    const parseJSON = (resp) => (resp.json ? resp.json() : resp);
-    const checkStatus = (resp) => {
-      if (resp.status >= 200 && resp.status < 300) {
-        return resp;
-      }
-      return parseJSON(resp).then((resp) => {
-        throw resp;
-      });
-    };
+  const fetchTopic = (async () => {
+    let topic
+    const response = await fetch("http://localhost:1337/topics/" + topicId, {
+      method: "GET",
+      headers: {'Content-Type': 'application/json'}
+    }).then(
+      (resp) => (resp.json ? resp.json() : resp)
+    )
+    topic = response
+    topic.published_at = dayjs(topic.published_at).format('DD/MM/YYYY')
 
-    try {
-      const res = await fetch("http://localhost:1337/topics/" + topicId, {
-        method: "GET",
-        'Content-Type': 'application/json',
-      }).then(checkStatus)
-        .then(parseJSON);
-      topic = res
-      topic.published_at = dayjs(topic.published_at).format('DD/MM/YYYY')
-    } catch (e) {
-      console.error(e)
-    }
-  });
+    return topic
+  })()
 
 </script>
 
-{#if topic}
+{#await fetchTopic then topic}
   <div class="max-w-5xl mx-auto mb-16 overflow-hidden bg-white rounded-lg shadow-xl">
     <img class="object-cover object-top w-full h-96 shadow-lg" src="http://localhost:1337{topic.cover.url}" alt="Article">
       
@@ -92,4 +81,4 @@
       </div>
     </div>
   </div>
-{/if}
+{/await}

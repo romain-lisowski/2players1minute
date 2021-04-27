@@ -1,8 +1,9 @@
 <script>
   import { Router, Route } from 'svelte-routing'
   import Header from './Header.svelte'
-  import Footer from './Footer.svelte'
   import TopicList from './TopicList.svelte'
+  import Topic from './Topic.svelte'
+  import Footer from './Footer.svelte'
   
 	export let siteName
   export let baseLine
@@ -28,6 +29,10 @@
 
       <Route path="/7/serie">
         <TopicList categoryId="7" />
+      </Route>
+
+      <Route path="/:categoryId/:categoryName/:topicId" let:params>
+        <Topic topicId="{params.topicId}" />
       </Route>
     </div>
   </main>
