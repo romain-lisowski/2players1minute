@@ -31,6 +31,7 @@
     "dayjs": "^1.10.4",
     "marked": "^2.0.3",
     "sirv-cli": "^1.0.0",
-    "svelte-easyroute": "^3.1.2"
+    "svelte-easyroute": "^3.1.2",
+    "svelte-navigator": "^3.1.5"
   }
 }

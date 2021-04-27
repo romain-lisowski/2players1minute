@@ -5,8 +5,7 @@
   import { faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
   import marked from 'marked'
 
-  export let router
-  const topicId = router.currentRouteData.value.params.topicId
+  const topicId = 1
   export let topic
 
   onMount(async () => {

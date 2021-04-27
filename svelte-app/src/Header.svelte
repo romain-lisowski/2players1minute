@@ -1,42 +1,26 @@
 <script>
   import { onMount } from 'svelte'
-  import { RouterLink } from 'svelte-easyroute'
+  import { Link } from 'svelte-navigator'
   import Fa from 'svelte-fa/src/fa.svelte'
   import { faHome, faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
 
-  let categories = []
-
-	onMount(async () => {
-		const parseJSON = (resp) => (resp.json ? resp.json() : resp);
-		const checkStatus = (resp) => {
-      if (resp.status >= 200 && resp.status < 300) {
-        return resp;
-      }
-      return parseJSON(resp).then((resp) => {
-        throw resp;
-      });
-    };
-
-    try {
-      const res = await fetch("http://localhost:1337/categories", {
-        method: "GET",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      }).then(checkStatus)
-        .then(parseJSON);
-      categories = res
-      categories.sort((a, b) => (a.order > b.order) ? 1 : -1)
-
-    } catch (e) {
-      error = e	
-    }
-	});
-
-
-	export let siteName
+  export let siteName
   export let baseLine
-	
+  
+	const fetchCategories = (async () => {
+    let categories = []
+    const response = await fetch("http://localhost:1337/categories", {
+      method: "GET",
+      headers: {'Content-Type': 'application/json'}
+    }).then(
+      (resp) => (resp.json ? resp.json() : resp)
+    )
+
+    categories = response
+    categories.sort((a, b) => (a.order > b.order) ? 1 : -1)
+    return categories
+  })()
+
 </script>
 
 <header class="h-full bg-gray-800 border-b-4 border-gray-500 shadow-xl">
@@ -51,42 +35,43 @@
         </div>
 
         <div class="items-center justify-center md:flex">
-            <!-- Mobile menu button -->
-            <div class="md:hidden">
-                <button type="button" class="text-gray-100 hover:text-gray-200 focus:outline-none focus:text-gray-200" aria-label="Toggle menu">
-                    <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
-                        <path d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
-                    </svg>
-                </button>
-            </div>
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button type="button" class="text-gray-100 hover:text-gray-200 focus:outline-none focus:text-gray-200" aria-label="Toggle menu">
+              <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
+                <path d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
+              </svg>
+            </button>
+          </div>
         
-            <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+          <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+          {#await fetchCategories then categories}
             <div class="flex flex-col mt-2 -mx-2 md:mt-8 md:flex-row md:block">
               {#each categories as category}
                 {#if category.icon_name === 'faHome' }
-                  <RouterLink to={'/'}>
+                  <Link to={'/'}>
                     <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-800 bg-gray-100 rounded-sm hover:shadow-lg">
                       <Fa icon={faHome} size="lg" class="inline mr-1" />
                       {category.name}
                     </span>
-                  </RouterLink>
+                  </Link>
                 {:else }
-                  <RouterLink to={'/' + category.name.toLowerCase()}>
+                  <Link to={'/' + category.id + '/' + category.name.toLowerCase()}>
                     <span class="md:mx-2 px-4 py-3 hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg transform duration-500 cursor-pointer">
                       {#if category.icon_name === 'faGamepad' }
-                          <Fa icon={faGamepad} size="lg" class="inline mr-1" />
-                        
+                        <Fa icon={faGamepad} size="lg" class="inline mr-1" />
                       {:else if category.icon_name === 'faFilm' }
-                          <Fa icon={faFilm} size="lg" class="inline mr-1" />
+                        <Fa icon={faFilm} size="lg" class="inline mr-1" />
                       {:else if category.icon_name === 'faTv' }
-                          <Fa icon={faTv} size="lg" class="inline mr-1" />
+                        <Fa icon={faTv} size="lg" class="inline mr-1" />
                       {/if}
                       {category.name}
                     </span>
-                  </RouterLink>
+                  </Link>
                 {/if}
               {/each}
             </div>
+          {/await}
         </div>
     </nav>
 </header>
