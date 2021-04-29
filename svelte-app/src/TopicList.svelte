@@ -8,9 +8,9 @@
 
   const fetchTopics = (async () => {
     let topics = []
-    const response = await fetch("http://localhost:1337/topics", {
-      method: "GET",
-      headers: {'Content-Type': 'application/json'}
+    const response = await fetch('http://localhost:1337/topics', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
     }).then(
       (resp) => (resp.json ? resp.json() : resp)
     )

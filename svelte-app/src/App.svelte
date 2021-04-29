@@ -5,16 +5,16 @@
   import Topic from './Topic.svelte'
   import Footer from './Footer.svelte'
   
-	export let siteName
+export let siteName
   export let baseLine
-  export let url = ""
+  export let url = ''
   
 </script>
 
 <Router url="{url}">
   <Header siteName="{siteName}" baseLine="{baseLine}"/>
   <main>	
-    <div class="h-full p-16">
+    <div class="h-full pt-16 px-16">
       <Route path="/">
         <TopicList />
       </Route>

@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   import dayjs from 'dayjs'
   import Fa from 'svelte-fa/src/fa.svelte'
   import { faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
@@ -9,9 +8,9 @@
 
   const fetchTopic = (async () => {
     let topic
-    const response = await fetch("http://localhost:1337/topics/" + topicId, {
-      method: "GET",
-      headers: {'Content-Type': 'application/json'}
+    const response = await fetch('http://localhost:1337/topics/' + topicId, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
     }).then(
       (resp) => (resp.json ? resp.json() : resp)
     )
@@ -23,7 +22,9 @@
 
 </script>
 
-{#await fetchTopic then topic}
+{#await fetchTopic}
+  <div class="h-screen"></div>
+{:then topic}
   <div class="max-w-5xl mx-auto mb-16 overflow-hidden bg-white rounded-lg shadow-xl">
     <img class="object-cover object-top w-full h-96 shadow-lg" src="http://localhost:1337{topic.cover.url}" alt="Article">
       

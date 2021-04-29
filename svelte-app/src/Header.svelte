@@ -6,11 +6,11 @@
   export let siteName
   export let baseLine
   
-	const fetchCategories = (async () => {
+  const fetchCategories = (async () => {
     let categories = []
-    const response = await fetch("http://localhost:1337/categories", {
-      method: "GET",
-      headers: {'Content-Type': 'application/json'}
+    const response = await fetch('http://localhost:1337/categories', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
     }).then(
       (resp) => (resp.json ? resp.json() : resp)
     )
@@ -20,14 +20,14 @@
     return categories
   })()
 
-  function getProps({ location, href, isPartiallyCurrent, isCurrent }) {
-    const isActive = href === "/" ? isCurrent : isPartiallyCurrent || isCurrent;
+  function getProps({ href, isPartiallyCurrent, isCurrent }) {
+    const isActive = href === '/' ? isCurrent : isPartiallyCurrent || isCurrent
 
     // The object returned here is spread on the anchor element's attributes
     if (isActive) {
-      return { class: "active md:mx-2 px-4 py-3 hover:font-bold text-gray-800 bg-gray-100 rounded-sm hover:shadow-lg transform duration-500" };
+      return { class: 'active md:mx-2 px-4 py-3 hover:font-bold text-gray-800 bg-gray-100 rounded-sm hover:shadow-lg transform duration-500' }
     } 
-    return { class: "md:mx-2 px-4 py-3 hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg transform duration-500 cursor-pointer"};
+    return { class: 'md:mx-2 px-4 py-3 hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg transform duration-500 cursor-pointer' }
   }
 
 </script>
