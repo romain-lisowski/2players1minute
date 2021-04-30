@@ -1,10 +1,14 @@
 <script>
+  import { query } from 'svelte-apollo'
+  import { GET_TOPIC } from './queries/GET_TOPIC'
+  import fetch from 'node-fetch'
   import dayjs from 'dayjs'
   import Fa from 'svelte-fa/src/fa.svelte'
   import { faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
   import marked from 'marked'
 
   export let topicId
+  const graphTopics = query(GET_TOPIC, { variables: { id: topicId } })
 
   const fetchTopic = (async () => {
     let topic
@@ -20,7 +24,17 @@
     return topic
   })()
 
-</script>
+</script> 
+
+{#if $graphTopics.loading}
+  Loading...
+{:else if $graphTopics.error}
+  Error: {$graphTopics.error.message}
+{:else}
+  {#each $graphTopics.data.user as user}
+    {user}
+  {/each}
+{/if}
 
 {#await fetchTopic}
   <div class="h-screen"></div>
