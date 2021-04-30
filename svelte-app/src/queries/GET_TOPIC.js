@@ -11,7 +11,6 @@ query Topic($id: ID!){
     category {
       name
       icon_name
-      order
     }    
     subcategories {
       name
@@ -21,6 +20,7 @@ query Topic($id: ID!){
       classes
     }
     tests {
+      rating
       content
       user {
         username
