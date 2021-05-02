@@ -21,6 +21,7 @@ query Topic($id: ID!) {
     }
     tests {
       rating
+      title
       content
       user {
         username
