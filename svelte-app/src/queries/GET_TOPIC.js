@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const GET_TOPIC = gql`
-query Topic($id: ID!){
+query Topic($id: ID!) {
   topic(id: $id) {
     name
     cover {

@@ -8,7 +8,6 @@
 
   export let topicId
   const queryTopic = query(GET_TOPIC, { variables: { id: topicId } })
-
 </script> 
 
 {#if $queryTopic.loading}
