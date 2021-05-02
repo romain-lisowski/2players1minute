@@ -1,44 +1,20 @@
 <script>
   import { Link } from 'svelte-routing'
-  import dayjs from 'dayjs'
+  import { query } from 'svelte-apollo'
+  import { GET_TOPICS } from './queries/GET_TOPICS'
   import Fa from 'svelte-fa/src/fa.svelte'
   import { faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
 
   export let categoryId = null
-
-  const fetchTopics = (async () => {
-    let topics = []
-    const response = await fetch('http://localhost:1337/topics', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    }).then(
-      (resp) => (resp.json ? resp.json() : resp)
-    )
-
-    if (categoryId !== null) {
-      response.forEach((r) => {
-        if (r.category.id == categoryId) {
-          topics.push(r)
-        }
-      })
-    } else {
-      topics = response
-    }
-
-    topics.forEach((topic) => {
-      topic.published_at = dayjs(topic.published_at).format('DD/MM/YYYY')
-    })
-    
-    return topics
-  })()
-
+  const queryVariables = categoryId ? { variables: { id: categoryId } } : {}
+  const queryTopics = query(GET_TOPICS, queryVariables)
 </script>
 
-{#await fetchTopics}
+{#if $queryTopics.loading}
   <div class="h-screen"></div>
-{:then topics}
+{:else}
   <ul class="grid grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
-    {#each topics as topic}
+    {#each $queryTopics.data.topics as topic}
       <li class="overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:scale-110 transform duration-300 cursor-pointer">
         <Link to={'/' + topic.category.id + '/' + topic.category.name.toLowerCase() + '/' + topic.id}>
           <img class="w-full h-64 object-cover object-top" src="http://localhost:1337{topic.cover.url}" alt="Article">
@@ -79,4 +55,4 @@
       </li>
     {/each}
   </ul>
-{/await}
+{/if}
