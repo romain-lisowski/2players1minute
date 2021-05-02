@@ -1,38 +1,26 @@
 <script>
+  import { query } from 'svelte-apollo'
+  import { GET_CATEGORIES } from './queries/GET_CATEGORIES'
   import { Link } from 'svelte-routing'
   import Fa from 'svelte-fa/src/fa.svelte'
   import { faHome, faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
 
   export let siteName
-  export let baseLine
-  
-  const fetchCategories = (async () => {
-    let categories = []
-    const response = await fetch('http://localhost:1337/categories', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    }).then(
-      (resp) => (resp.json ? resp.json() : resp)
-    )
+  export let baseLine  
 
-    categories = response
-    categories.sort((a, b) => (a.order > b.order) ? 1 : -1)
-    return categories
-  })()
+  const queryCategories = query(GET_CATEGORIES)
 
   function getProps({ href, isPartiallyCurrent, isCurrent }) {
     const isActive = href === '/' ? isCurrent : isPartiallyCurrent || isCurrent
-
     // The object returned here is spread on the anchor element's attributes
     if (isActive) {
       return { class: 'active md:mx-2 px-4 py-3 hover:font-bold text-gray-800 bg-gray-100 rounded-sm hover:shadow-lg transform duration-500' }
     } 
     return { class: 'md:mx-2 px-4 py-3 hover:font-bold text-gray-100 hover:bg-gray-100 hover:text-gray-900 rounded-sm hover:shadow-lg transform duration-500 cursor-pointer' }
   }
-
 </script>
 
-<header class="h-full bg-gray-800 border-b-4 border-gray-500 shadow-xl">
+<header class="h-full bg-gray-800 border-b-2 border-gray-500 shadow-xl">
     <nav class="px-10 py-6 shadow">
 
       <Link to={'/'}>
@@ -56,10 +44,12 @@
         </div>
         
         <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-        {#await fetchCategories then categories}
+        {#if $queryCategories.loading}
+         Loading...
+        {:else}
           <div class="flex flex-col mt-2 -mx-2 md:mt-8 md:flex-row md:block">
-            {#each categories as category}
-              {#if category.icon_name === 'faHome' }
+            {#each $queryCategories.data.categories as category}
+              {#if category.icon_name === 'faHome'}
                 <Link to={'/'} getProps="{getProps}">
                   <Fa icon={faHome} size="lg" class="inline mr-1" />
                   {category.name}
@@ -78,7 +68,7 @@
               {/if}
             {/each}
           </div>
-        {/await}
+        {/if}
       </div>
     </nav>
 </header>
