@@ -18,7 +18,7 @@
   <ul class="grid grid-cols-3 gap-6 max-w-7xl mx-auto mb-16">
     {#each $queryTopics.data.topics as topic}
       <li class="overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:scale-110 transform duration-300 cursor-pointer">
-        <Link to={'/' + topic.category.id + '/' + topic.category.name.toLowerCase() + '/' + topic.id}>
+        <Link to={'/' + topic.category.id + '/' + topic.category.name.toLowerCase() + '/' + topic.id + '/' + topic.slug}>
           <img class="w-full h-64 object-cover object-top" src="{apiUrl + topic.cover.url}" alt="Article">
             
           <div>

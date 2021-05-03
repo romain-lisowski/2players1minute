@@ -5,6 +5,7 @@ query Topics ($id: ID) {
   topics (where: { category: $id }) {
     id
     name
+    slug
     cover {
       url
     }

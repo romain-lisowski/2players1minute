@@ -18,8 +18,8 @@
       "type": "string"
     },
     "topics": {
-      "collection": "topic",
       "via": "platforms",
+      "collection": "topic",
       "dominant": true
     }
   }

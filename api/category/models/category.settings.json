@@ -23,8 +23,8 @@
       "type": "integer"
     },
     "topics": {
-      "collection": "topic",
-      "via": "category"
+      "via": "category",
+      "collection": "topic"
     }
   }
 }

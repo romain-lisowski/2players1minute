@@ -29,7 +29,7 @@
       </Route>
 
       <Route path="/1/gaming">
-        <TopicList categoryId="1" />
+        <TopicList categoryId="1"/>
       </Route>
 
       <Route path="/2/cinema">
@@ -40,7 +40,7 @@
         <TopicList categoryId="7" />
       </Route>
 
-      <Route path="/:categoryId/:categoryName/:topicId" let:params>
+      <Route path="/:categoryId/:categoryName/:topicId/:topicSlug" let:params>
         <Topic topicId="{params.topicId}" />
       </Route>
     </div>
