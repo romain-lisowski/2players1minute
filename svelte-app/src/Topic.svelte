@@ -6,7 +6,11 @@
   import { faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
   import marked from 'marked'
 
+  // eslint-disable-next-line no-undef
+  const apiUrl = API_URL
+  console.log(apiUrl)
   export let topicId
+
   const queryTopic = query(GET_TOPIC, { variables: { id: topicId } })
 </script> 
 
@@ -14,7 +18,7 @@
   <div class="h-screen"></div>
 {:else}
   <div class="max-w-5xl mx-auto mb-16 overflow-hidden bg-white rounded-lg shadow-xl">
-    <img class="object-cover object-top w-full h-96 shadow-lg" src="http://localhost:1337{$queryTopic.data.topic.cover.url}" alt="Article">
+    <img class="object-cover object-top w-full h-96 shadow-lg" src="{apiUrl + $queryTopic.data.topic.cover.url}" alt="Article">
       
     <div class="p-6 bg-gray-800 border-b-2 border-gray-500">
       <p class="text-left text-5xl font-extrabold text-gray-100 cursor-pointer">{$queryTopic.data.topic.name}</p>

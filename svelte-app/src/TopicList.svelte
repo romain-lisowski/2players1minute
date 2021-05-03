@@ -5,6 +5,8 @@
   import Fa from 'svelte-fa/src/fa.svelte'
   import { faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
 
+  // eslint-disable-next-line no-undef
+  const apiUrl = API_URL
   export let categoryId = null
   const queryVariables = categoryId ? { variables: { id: categoryId } } : {}
   const queryTopics = query(GET_TOPICS, queryVariables)
@@ -17,7 +19,7 @@
     {#each $queryTopics.data.topics as topic}
       <li class="overflow-hidden rounded-lg shadow-lg hover:shadow-2xl hover:scale-110 transform duration-300 cursor-pointer">
         <Link to={'/' + topic.category.id + '/' + topic.category.name.toLowerCase() + '/' + topic.id}>
-          <img class="w-full h-64 object-cover object-top" src="http://localhost:1337{topic.cover.url}" alt="Article">
+          <img class="w-full h-64 object-cover object-top" src="{apiUrl + topic.cover.url}" alt="Article">
             
           <div>
             <div class="flex items-baseline justify-between -mt-12">

@@ -6,6 +6,9 @@ import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import css from 'rollup-plugin-css-only'
 import sveltePreprocess from 'svelte-preprocess'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -43,7 +46,10 @@ export default {
       compilerOptions: {
         // enable run-time checks when not in production
         hydratable: true,
-        dev: !production
+        dev: !production,
+        css: css => {
+          css.write('public/build/bundle.css')
+        }
       },
       preprocess: sveltePreprocess({
         sourceMap: !production,
@@ -57,7 +63,8 @@ export default {
     }),
     replace({
       'preventAssignment': true,
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      API_URL: JSON.stringify(process.env.API_URL)
     }),  
     // we'll extract any component CSS out into
     // a separate file - better for performance

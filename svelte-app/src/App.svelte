@@ -7,12 +7,14 @@
   import Topic from './Topic.svelte'
   import Footer from './Footer.svelte'
   
+  // eslint-disable-next-line no-undef
+  const apiUrl = API_URL
   export let siteName
   export let baseLine
   export let url = ''
   
   const client = new ApolloClient({
-    uri: 'http://localhost:1337/graphql',
+    uri: apiUrl + '/graphql',
     cache: new InMemoryCache()
   })
   setClient(client)
