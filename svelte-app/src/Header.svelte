@@ -10,6 +10,11 @@
 
   const queryCategories = query(GET_CATEGORIES)
 
+  let menuOpened = false
+  // function handleMenuClick() {
+  //   menuOpened = !menuOpened
+  // }
+
   function getProps({ href, isPartiallyCurrent, isCurrent }) {
     const isActive = href === '/' ? isCurrent : isPartiallyCurrent || isCurrent
     // The object returned here is spread on the anchor element's attributes
@@ -21,33 +26,34 @@
 </script>
 
 <header class="h-full bg-gray-800 border-b-2 border-gray-500 shadow-xl">
-    <nav class="px-10 py-6 shadow">
+    <nav class="px-10 py-3 sm:py-4 md:py-6 shadow">
 
       <Link to={'/'}>
-        <div class="flex items-center justify-center">
-          <img class="inline-block h-20  mr-2" src="/assets/images/gamepads.svg" alt="icon-gamepads">
-          <span>
-            <span class="inline-block text-6xl text-gray-100 font-extrabold tracking-tighter">{siteName}</span>
-            <span class="block text-center text-xl text-gray-100 tracking-wide">{baseLine}</span>
+        <div class="flex items-center justify-between sm:justify-center">
+          <img class="inline-block h-12 sm:h-16 md:h-20 mr-2" src="/assets/images/gamepads.svg" alt="icon-gamepads">
+          <span class="text-center">
+            <span class="block text-3xl sm:text-4xl md:text-6xl text-gray-100 font-extrabold tracking-tighter">{siteName}</span>
+            <span class="block -mt-1 text-base sm:text-lg md:text-xl text-gray-100 tracking-wide">{baseLine}</span>
+          </span>
+          <!-- Mobile menu button -->
+          <span class="md:hidden">
+            <button type="button" on:click={() => {menuOpened = !menuOpened}} class="text-gray-100 hover:text-gray-200 focus:outline-none focus:text-gray-200">
+              <svg viewBox="0 0 24 24" class="w-10 h-10 fill-current">
+                <path d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
+              </svg>
+            </button>
           </span>
         </div>
       </Link>
 
       <div class="items-center justify-center md:flex">
-        <!-- Mobile menu button -->
-        <div class="md:hidden">
-          <button type="button" class="text-gray-100 hover:text-gray-200 focus:outline-none focus:text-gray-200">
-            <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
-              <path d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
-            </svg>
-          </button>
-        </div>
+        
         
         <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
         {#if $queryCategories.loading}
          Loading...
         {:else}
-          <div class="flex flex-col mt-2 -mx-2 md:mt-8 md:flex-row md:block">
+          <div class="flex flex-col mt-2 -mx-2 md:mt-8 md:flex-row md:block {menuOpened === true ? 'selected' : 'hidden'}">
             {#each $queryCategories.data.categories as category}
               {#if category.icon_name === 'faHome'}
                 <Link to={'/'} getProps="{getProps}">

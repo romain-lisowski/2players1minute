@@ -23,13 +23,13 @@
 <Router url="{url}">
   <Header siteName="{siteName}" baseLine="{baseLine}"/>
   <main>	
-    <div class="h-full pt-16 px-16">
+    <div class="h-full pt-10 sm:pt-12 md:pt-16 px-10 sm:px-12 md:px-16">
       <Route path="/">
         <TopicList />
       </Route>
 
       <Route path="/1/gaming">
-        <TopicList categoryId="1"/>
+        <TopicList categoryId="1" />
       </Route>
 
       <Route path="/2/cinema">
