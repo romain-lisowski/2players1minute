@@ -4,7 +4,7 @@ const app = new App({
   target: document.body,
   hydrate: true,
   props: {
-    siteName: 'SIDE BY SIDE',
+    siteName: '2SIDES 1MINUTE',
     baseLine: 'Deux avis en une minute'
   }
 })
