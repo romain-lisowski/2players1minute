@@ -48,3 +48,38 @@
   <Footer siteName="{siteName}" />
 </Router>
 
+<style global lang="postcss">
+
+@tailwind base;
+
+@font-face {
+  font-family: 'CustomSans';
+  src: url('/assets/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CustomSans';
+  src: url('/assets/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CustomSans';
+  src: url('/assets/fonts/Roboto_Condensed/RobotoCondensed-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CustomSans';
+  src: url('/assets/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@tailwind components;
+@tailwind utilities;
+</style>
