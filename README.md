@@ -1,1 +1,3 @@
-# 2players1minute
+# 2Sides 1Minute
+
+A Strapi/Svelte project
