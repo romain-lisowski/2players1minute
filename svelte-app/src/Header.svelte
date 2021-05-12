@@ -54,7 +54,7 @@
         
         <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
         {#if $queryCategories.loading}
-         Loading...
+         <div class="text-gray-100">Loading...</div>
         {:else}
           <div class="flex flex-col mt-2 -mx-2 md:mt-8 md:flex-row md:block {menuOpened === true ? 'selected' : 'hidden'}">
             {#each $queryCategories.data.categories as category}
