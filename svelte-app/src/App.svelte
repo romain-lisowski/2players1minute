@@ -28,16 +28,16 @@
         <TopicList />
       </Route>
 
-      <Route path="/1/gaming">
-        <TopicList categoryId="1" />
+      <Route path="/:categoryId/gaming" let:params>
+        <TopicList categoryId="{params.categoryId}" />
       </Route>
 
-      <Route path="/2/cinema">
-        <TopicList categoryId="2" />
+      <Route path="/:categoryId/cinema" let:params>
+        <TopicList categoryId="{params.categoryId}" />
       </Route>
 
-      <Route path="/7/serie">
-        <TopicList categoryId="7" />
+      <Route path="/:categoryId/serie" let:params>
+        <TopicList categoryId="{params.categoryId}" />
       </Route>
 
       <Route path="/:categoryId/:categoryName/:topicId/:topicSlug" let:params>
