@@ -8,7 +8,6 @@
 
   // eslint-disable-next-line no-undef
   const apiUrl = API_URL
-  console.log(apiUrl)
   export let topicId
 
   const queryTopic = query(GET_TOPIC, { variables: { id: topicId } })
@@ -59,7 +58,7 @@
               <div class="flex items-center justify-between w-full">
                 <div class="flex items-center">
                   <img class="object-cover h-10 md:h-12 rounded-full" src="{apiUrl + test.user.image_profile.url}" alt="Avatar">
-                  <span class="mx-2 text-lg font-semibold text-gray-800">Rom</span>
+                  <span class="mx-2 text-lg font-semibold text-gray-800">{test.user.username}</span>
                 </div>
                 <span class="text-right text-xl px-2 py-1 md:px-4 md:py-2 lg:px-6 lg:py-3 text-gray-100 bg-gray-800 rounded-sm shadow-md">
                   <span class="font-bold text-2xl">{test.rating}</span><span class="text-sm">/10</span>
