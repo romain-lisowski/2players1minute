@@ -7,13 +7,9 @@
 
   export let siteName
   export let baseLine  
+  let menuOpened = false
 
   const queryCategories = query(GET_CATEGORIES)
-
-  let menuOpened = false
-  // function handleMenuClick() {
-  //   menuOpened = !menuOpened
-  // }
 
   function getProps({ href, isPartiallyCurrent, isCurrent }) {
     const isActive = href === '/' ? isCurrent : isPartiallyCurrent || isCurrent
@@ -50,8 +46,6 @@
       </div>
 
       <div class="items-center justify-center md:flex">
-        
-        
         <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
         {#if $queryCategories.loading}
          <div class="text-gray-100">Loading...</div>
