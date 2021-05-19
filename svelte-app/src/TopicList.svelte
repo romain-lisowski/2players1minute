@@ -31,14 +31,14 @@
             </span>
           </span>
           <span class="absolute bottom-16 md:bottom-20 left-2">
-            <ul class="flex justify-end gap-2 pl-3">
+            <ul class="flex justify-end space-x-2 pl-3">
               {#each topic.platforms as platform}
                 <li class="px-2 py-1 lg:px-3 lg:py-2 text-xs sm:text-sm text-gray-100 align-middle rounded-sm shadow-lg {platform.classes}">{platform.name}</li>
               {/each}
             </ul>  
           </span>
             
-          <div class="flex items-center justify-left gap-3 bg-gray-800">
+          <div class="flex items-center justify-left space-x-3 bg-gray-800">
             <span class="ml-6 text-base sm:text-lg md:text-xl font-extrabold text-gray-100 uppercase rounded-sm shadow-lg">
               {#if topic.category.icon_name === 'faGamepad' }
                 <Fa icon={faGamepad} size="lg" />
