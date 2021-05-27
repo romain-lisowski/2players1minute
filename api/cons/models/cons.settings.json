@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cons",
+  "info": {
+    "name": "cons"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "test": {
+      "model": "test",
+      "via": "cons"
+    }
+  }
+}

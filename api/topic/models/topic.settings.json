@@ -17,8 +17,8 @@
       "unique": true
     },
     "tests": {
-      "collection": "test",
-      "via": "topic"
+      "via": "topic",
+      "collection": "test"
     },
     "category": {
       "model": "category",
@@ -46,6 +46,9 @@
     },
     "slug": {
       "type": "string"
+    },
+    "abstract": {
+      "type": "richtext"
     }
   }
 }

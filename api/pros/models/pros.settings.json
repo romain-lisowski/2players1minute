@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pros",
+  "info": {
+    "name": "Pros"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "test": {
+      "model": "test",
+      "via": "pros"
+    }
+  }
+}

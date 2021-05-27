@@ -4,6 +4,7 @@ export const GET_TOPIC = gql`
 query Topic($id: ID!) {
   topic(id: $id) {
     name
+    abstract
     cover {
       url
     }
@@ -29,7 +30,14 @@ query Topic($id: ID!) {
           url
         }
       }
+      pros {
+        content
+      }
+      cons {
+        content
+      }
     }
+    
   }
 }
 `

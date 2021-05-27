@@ -3,7 +3,7 @@
   import { GET_TOPIC } from './queries/GET_TOPIC'
   import dayjs from 'dayjs'
   import Fa from 'svelte-fa/src/fa.svelte'
-  import { faGamepad, faFilm, faTv } from '@fortawesome/free-solid-svg-icons'
+  import { faGamepad, faFilm, faTv, faPlusSquare, faMinusSquare } from '@fortawesome/free-solid-svg-icons'
   import marked from 'marked'
 
   // eslint-disable-next-line no-undef
@@ -40,18 +40,24 @@
         </ul>
         
         <span>
-          <ul class="flex justify-start md:justify-end space-x-2 mt-2 md:mt-0">
+          <ul class="flex justify-start md:justify-end space-x-2 mt-2 md:-mt-2">
             {#each $queryTopic.data.topic.platforms as platform}
             <li class="px-4 py-1 text-xs md:text-sm text-gray-100 align-middle rounded-sm {platform.classes}">{platform.name}</li>
             {/each}
           </ul>
-          <p class="text-left md:text-right text-xs sm:text-sm md:text-base text-gray-100 mt-4 md:mt-2">Publié le : {dayjs($queryTopic.data.topic.published_at).format('DD/MM/YYYY')}</p>
+          <p class="text-left md:text-right text-sm sm:text-sm md:text-base text-gray-100 mt-4 md:mt-2">Publié le : {dayjs($queryTopic.data.topic.published_at).format('DD/MM/YYYY')}</p>
         </span>
+
       </div>
+      {#if $queryTopic.data.topic.abstract !== null}
+        <div class="mt-6 text-gray-100 text-justify">
+          {$queryTopic.data.topic.abstract}
+        </div>
+      {/if}
     </div>
 
     <div class="p-6">
-      <div class="flex flex-col md:flex-row gap-6 items-start justify-between">
+      <div class="flex flex-col md:flex-row gap-2 md:gap-4 items-start justify-between">
         {#each $queryTopic.data.topic.tests as test}
           <div class="w-full md:w-3/4 mb-8 md:mb-0">  
             <div class="flex items-center mb-3 pb-3 border-b-2 border-gray-800">
@@ -67,6 +73,29 @@
             </div>
             <p class="mt-2 text-xl text-gray-800 font-bold">{test.title}</p>
             <p class="mt-2 text-gray-800 text-justify">{@html marked(test.content)}</p>
+
+            {#if test.pros.length > 0 || test.cons.length > 0}
+              <hr class="my-2"  />
+
+              <ul class="mt-2">
+                {#each test.pros as pros} 
+                  <li>
+                    <Fa icon={faPlusSquare} class="h-10 inline mr-1 text-green-600" />
+                    {pros.content}
+                  </li>
+                {/each}
+              </ul>
+
+              <ul class="mt-2">
+                {#each test.cons as cons} 
+                  <li>
+                    <Fa icon={faMinusSquare} class="h-10 inline mr-1 text-red-600" />
+                    {cons.content}
+                  </li>
+                {/each}
+              </ul>
+            {/if}
+
           </div>
         {/each}
       </div>
