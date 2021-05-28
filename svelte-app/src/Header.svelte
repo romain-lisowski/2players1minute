@@ -22,22 +22,22 @@
 </script>
 
 <header class="h-full bg-gray-800 border-b-2 border-gray-500 shadow-xl">
-    <nav class="px-10 py-3 sm:py-4 md:py-6 shadow">
+    <nav class="px-10 py-2 sm:py-4 md:py-6 shadow">
 
       <div class="flex items-center justify-between sm:justify-center">
         <Link to={'/'}>
-          <img class="inline-block h-12 sm:h-16 md:h-20 mr-2" src="/assets/images/gamepads.svg" alt="icon-gamepads">
+          <img class="inline-block h-12 sm:h-16 md:h-20 mr-4 sm:mr-2" src="/assets/images/gamepads.svg" alt="icon-gamepads">
         </Link>
         <Link to={'/'}>
           <span class="text-center">
-            <span class="block text-3xl sm:text-4xl md:text-6xl text-gray-100 font-extrabold tracking-tighter">{siteName}</span>
+            <span class="block text-2xl sm:text-4xl md:text-6xl text-gray-100 font-extrabold tracking-tighter">{siteName}</span>
             <span class="block -mt-1 text-base sm:text-lg md:text-xl text-gray-100 tracking-wide">{baseLine}</span>
           </span>
         </Link>
         
         <!-- Mobile menu button -->
         <span class="md:hidden">
-          <button type="button" on:click={() => {menuOpened = !menuOpened}} class="text-gray-100 hover:text-gray-200 focus:outline-none focus:text-gray-200">
+          <button type="button" on:click={() => {menuOpened = !menuOpened}} class="text-gray-100 hover:text-gray-200 focus:outline-none focus:text-gray-200 ml-4">
             <svg viewBox="0 0 24 24" class="w-10 h-10 fill-current">
               <path d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
             </svg>

@@ -23,7 +23,7 @@
       <p class="text-left text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-extrabold text-gray-100 cursor-pointer">{$queryTopic.data.topic.name}</p>
 
       <div class="flex flex-col md:flex-row items-start md:items-end md:justify-between mt-3 md:mt-0">
-        <ul class="flex space-x-2">
+        <ul class="flex space-x-2 mt-0 md:mt-2">
           <li class="px-2 sm:px-4 md:px-6 py-1 md:py-2 text-xs sm:text-sm font-extrabold bg-gray-100 text-gray-800 border-2 border-gray-100 shadow-md uppercase rounded-sm">
             {#if $queryTopic.data.topic.category.icon_name === 'faGamepad' }
               <Fa icon={faGamepad} class="h-10 inline mr-1" />
@@ -47,10 +47,10 @@
           </ul>
           <p class="text-left md:text-right text-sm sm:text-sm md:text-base text-gray-100 mt-4 md:mt-2">Publié le : {dayjs($queryTopic.data.topic.published_at).format('DD/MM/YYYY')}</p>
         </span>
-
       </div>
+
       {#if $queryTopic.data.topic.abstract !== null}
-        <div class="mt-6 text-gray-100 text-justify">
+        <div class="mt-2 md:mt-6 text-gray-100 text-justify">
           {$queryTopic.data.topic.abstract}
         </div>
       {/if}
